@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import orang from './data'
-import { FaChevronLeft, FaChevronRight, FaPeopleArrows, FaQuoteRight } from 'react-icons/fa';
+import { FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa';
 
 
 const Review = () => {
 
     const [index,setIndex] = useState(0);
-    const {id,nama,job,image,text} = orang[index];
+    const {nama,job,image,text} = orang[index];
     
     const checkNumber  = (number) =>{
         if (number > orang.length -1){
@@ -32,6 +32,15 @@ const Review = () => {
             return checkNumber(newIndex);
         })
     }
+
+    const randomOrang = (number) =>{
+        let randomNumber = Math.floor(Math.random() * orang.length)
+        if (randomNumber === index){
+            randomNumber = index + 1;
+        }
+        console.log(randomNumber)
+        setIndex(checkNumber(randomNumber));
+    }
     
 
   return (
@@ -54,7 +63,7 @@ const Review = () => {
                 <FaChevronRight />
             </button>
         </div>
-            <button className='random-btn'>
+            <button className='random-btn' onClick={()=>randomOrang(index)}>
                 Random!
             </button>
     </article>
